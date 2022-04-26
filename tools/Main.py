@@ -10,7 +10,7 @@ import DatasetCapsulation as Data
 from tools import Utils, Model
 from transformers import BertTokenizer
 
-dataset_version = "v1/"
+dataset_version = "v2/"
 dataset_name_list = ["14res", "14lap", "15res", "16res"]
 dataset_type_list = ["train_triplets", "dev_triplets", "test_triplets"]
 if dataset_version.__eq__("v1/"):
@@ -389,12 +389,11 @@ def test(model, tokenize, batch_generator, test_data, beta, logger, gpu, max_len
 
 
 def create_directory(arguments):
-    if not os.path.exists(arguments.log_path):
-        os.mkdir(arguments.log_path)
-        os.mkdir(arguments.log_path + dataset_version)
-    if not os.path.exists(arguments.save_model_path):
-        os.mkdir(arguments.save_model_path)
-        os.mkdir(arguments.save_model_path + dataset_version)
+
+    if not os.path.exists(arguments.log_path + dataset_version):
+        os.makedirs(arguments.log_path + dataset_version)
+    if not os.path.exists(arguments.save_model_path + dataset_version):
+        os.makedirs(arguments.save_model_path + dataset_version)
     log_path = arguments.log_path + dataset_version + arguments.data_name + arguments.model_name + '.log'
     model_path = arguments.save_model_path + dataset_version + arguments.data_name + arguments.model_name + '.pth'
     if not os.path.exists(log_path):
