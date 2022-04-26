@@ -391,10 +391,12 @@ def test(model, tokenize, batch_generator, test_data, beta, logger, gpu, max_len
 def create_directory(arguments):
     if not os.path.exists(arguments.log_path):
         os.mkdir(arguments.log_path)
+        os.mkdir(arguments.log_path + dataset_version)
     if not os.path.exists(arguments.save_model_path):
         os.mkdir(arguments.save_model_path)
-    log_path = arguments.log_path + arguments.data_name + arguments.model_name + '.log'
-    model_path = arguments.save_model_path + arguments.data_name + arguments.model_name + '.pth'
+        os.mkdir(arguments.save_model_path + dataset_version)
+    log_path = arguments.log_path + dataset_version + arguments.data_name + arguments.model_name + '.log'
+    model_path = arguments.save_model_path + dataset_version + arguments.data_name + arguments.model_name + '.pth'
     if not os.path.exists(log_path):
         log = open(log_path, 'w')
         log.close()
@@ -405,8 +407,8 @@ def create_directory(arguments):
 def train(arguments):
     create_directory(arguments)
 
-    log_path = arguments.log_path + arguments.data_name + arguments.model_name + '.log'
-    model_path = arguments.save_model_path + arguments.data_name + arguments.model_name + '.pth'
+    log_path = arguments.log_path + dataset_version + arguments.data_name + arguments.model_name + '.log'
+    model_path = arguments.save_model_path + dataset_version + arguments.data_name + arguments.model_name + '.pth'
 
     # init logger and tokenize
     logger, fh, sh = Utils.get_logger(log_path)
@@ -624,8 +626,8 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Bidirectional MRC-based sentiment triplet extraction')
     parser.add_argument('--data_path', type=str, default="../data/preprocess/" + dataset_version)
     parser.add_argument('--data_name', type=str, default=dataset_name_list[0], choices=dataset_name_list)
-    parser.add_argument('--log_path', type=str, default="../log/" + dataset_version)
-    parser.add_argument('--save_model_path', type=str, default="../model/" + dataset_version)
+    parser.add_argument('--log_path', type=str, default="../log/")
+    parser.add_argument('--save_model_path', type=str, default="../model/")
     parser.add_argument('--model_name', type=str, default="_BiMRC")
 
     parser.add_argument('--mode', type=str, default="train", choices=["train", "test"])
