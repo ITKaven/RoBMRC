@@ -31,7 +31,7 @@ The results of data preprocessing will be placed in the ./data/preprocess/.
   python ./tools/Main.py --mode train # For training
   python ./tools/Main.py --mode test # For testing
 ```
-Training different versions of datasets can modify the value of dataset_version in Main.py:
+Training different versions of datasets can modify the value of dataset_version in Main.py.
 ```
 dataset_version = "v1/"
 dataset_version = "v2/"
