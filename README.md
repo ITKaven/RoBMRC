@@ -35,4 +35,8 @@ Training different versions of datasets can modify the value of dataset_version 
 ```
 dataset_version = "v1/"
 dataset_version = "v2/"
+<<<<<<< HEAD
 ```
+=======
+```
+>>>>>>> origin/master
