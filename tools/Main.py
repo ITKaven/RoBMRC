@@ -438,7 +438,6 @@ def train(arguments):
 
     if arguments.mode == 'test':
         test_dataset = Data.ReviewDataset(test_data)
-        train_dataset = Data.ReviewDataset(train_data)
         # load checkpoint
         logger.info('loading model......')
         checkpoint = torch.load(model_path)
@@ -450,11 +449,6 @@ def train(arguments):
         batch_generator_test = Data.generate_batches(dataset=test_dataset, batch_size=1, shuffle=False,
                                                      gpu=arguments.gpu)
         test(model, tokenize, batch_generator_test, test_standard, arguments.inference_beta, logger,
-             arguments.gpu, max_len)
-
-        batch_generator_train = Data.generate_batches(dataset=train_dataset, batch_size=1, shuffle=False,
-                                                      gpu=arguments.gpu)
-        test(model, tokenize, batch_generator_train, train_standard, arguments.inference_beta, logger,
              arguments.gpu, max_len)
 
     elif arguments.mode == 'train':
