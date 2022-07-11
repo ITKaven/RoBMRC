@@ -389,7 +389,6 @@ def test(model, tokenize, batch_generator, test_data, beta, logger, gpu, max_len
 
 
 def create_directory(arguments):
-
     if not os.path.exists(arguments.log_path + dataset_version):
         os.makedirs(arguments.log_path + dataset_version)
     if not os.path.exists(arguments.save_model_path + dataset_version):
@@ -593,18 +592,18 @@ def train(arguments):
             batch_generator_dev = Data.generate_batches(dataset=dev_dataset, batch_size=1, shuffle=False,
                                                         gpu=arguments.gpu)
             logger.info("dev")
-            test(model, tokenize, batch_generator_dev, dev_standard, arguments.inference_beta, logger,
-                 arguments.gpu, max_len)
+            dev_f1 = test(model, tokenize, batch_generator_dev, dev_standard, arguments.inference_beta, logger,
+                          arguments.gpu, max_len)
 
             # test
             batch_generator_test = Data.generate_batches(dataset=test_dataset, batch_size=1, shuffle=False,
                                                          gpu=arguments.gpu)
             logger.info("test")
-            f1_test = test(model, tokenize, batch_generator_test, test_standard, arguments.inference_beta, logger,
-                           arguments.gpu, max_len)
+            test(model, tokenize, batch_generator_test, test_standard, arguments.inference_beta, logger,
+                 arguments.gpu, max_len)
             # save model and optimizer
-            if f1_test > best_f1:
-                best_f1 = f1_test
+            if dev_f1 > best_f1:
+                best_f1 = dev_f1
                 logger.info('Model saved after epoch {}'.format(epoch))
                 state = {'net': model.state_dict(), 'optimizer': optimizer.state_dict(), 'epoch': epoch}
                 torch.save(state, model_path)
