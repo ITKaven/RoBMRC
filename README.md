@@ -36,4 +36,25 @@ Training different versions of datasets can modify the value of dataset_version 
 dataset_version = "v1/"
 dataset_version = "v2/"
 ```
-
+#### Citation:
+If you used the datasets or code, please cite our paper.
+```
+@inproceedings{liu-etal-2022-robustly,
+    title = "A Robustly Optimized {BMRC} for Aspect Sentiment Triplet Extraction",
+    author = "Liu, Shu  and
+      Li, Kaiwen  and
+      Li, Zuhe",
+    booktitle = "Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies",
+    month = jul,
+    year = "2022",
+    address = "Seattle, United States",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2022.naacl-main.20",
+    doi = "10.18653/v1/2022.naacl-main.20",
+    pages = "272--278",
+}
+```
+#### Reference:
+```
+Shu Liu, Kaiwen Li, and Zuhe Li. 2022. A Robustly Optimized BMRC for Aspect Sentiment Triplet Extraction. In Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies, pages 272–278, Seattle, United States. Association for Computational Linguistics.
+```
